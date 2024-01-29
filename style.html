@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Matcher Style</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Style: <span id="style-title">Grunge</span></h1>
+        <select id="style-change" onchange="changeStyle(this.value)">
+            <option value="">Change Style</option>
+            <option value="grunge">Grunge</option>
+            <option value="fall">Fall</option>
+            <!-- Add other style options here -->
+        </select>
+    </header>
+    <main id="style-images">
+        <!-- Style images will be populated here -->
+    </main>
+
+    <script src="style-script.js"></script>
+</body>
+</html>

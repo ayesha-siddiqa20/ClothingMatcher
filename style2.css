@@ -1,0 +1,35 @@
+#clothing-matcher {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.clothing-item {
+  margin: 20px;
+}
+
+#top-image, #bottom-image {
+  width: 200px; /* Adjust as needed */
+  height: 200px; /* Adjust as needed */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.navigation-button {
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#match-check {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

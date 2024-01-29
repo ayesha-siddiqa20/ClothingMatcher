@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clothing Matcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .clothing-item {
+            margin: 15px auto;
+            display: block;
+        }
+        #top-clothing img, #bottom-clothing img {
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .navigation-button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #match-check-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="clothing-matcher">
+        <div id="top-clothing" class="clothing-item">
+            <img id="top-image" src="top1.png" alt="Top Clothing">
+            <br>
+            <button class="navigation-button" onclick="changeTop(-1)">Previous</button>
+            <button class="navigation-button" onclick="changeTop(1)">Next</button>
+        </div>
+        <div id="bottom-clothing" class="clothing-item">
+            <img id="bottom-image" src="bottom1.png" alt="Bottom Clothing">
+            <br>
+            <button class="navigation-button" onclick="changeBottom(-1)">Previous</button>
+            <button class="navigation-button" onclick="changeBottom(1)">Next</button>
+        </div>
+        <button id="match-check-button" onclick="checkForMatch()">Check for Match</button>
+    </div>
+
+    <script>
+        let tops = [
+            { image: "top1.png", color: "white" },
+            { image: "top2.png", color: "black" },
+            { image: "top3.png", color: "brown" }
+        ];
+
+        let bottoms = [
+            { image: "bottom1.png", color: "white" },
+            { image: "bottom2.png", color: "green" },
+            { image: "bottom3.png", color: "white" }
+        ];
+
+        let currentTopIndex = 0;
+        let currentBottomIndex = 0;
+
+        function changeTop(direction) {
+            currentTopIndex = (currentTopIndex + direction + tops.length) % tops.length;
+            document.getElementById('top-image').src = tops[currentTopIndex].image;
+        }
+
+        function changeBottom(direction) {
+            currentBottomIndex = (currentBottomIndex + direction + bottoms.length) % bottoms.length;
+            document.getElementById('bottom-image').src = bottoms[currentBottomIndex].image;
+        }
+
+        let mismatchedColors = {
+            "red": ["brown", "green", "orange"],
+            "green": ["red", "pink", "purple"],
+            "blue": ["orange", "brown"],
+            "yellow": ["purple", "blue", "brown"],
+            "orange": ["blue", "purple"],
+            "purple": ["yellow", "orange", "green"],
+            "pink": ["green", "yellow"],
+            "brown": ["yellow", "blue", "red"],
+            "black": ["brown"],
+            "white": [""]
+        };
+
+        function checkForMatch() {
+            let topColor = tops[currentTopIndex].color;
+            let bottomColor = bottoms[currentBottomIndex].color;
+
+            if (mismatchedColors[topColor] && mismatchedColors[topColor].includes(bottomColor)) {
+                alert('Not a match, try again!');
+            } else {
+                alert('It\'s a match!');
+            }
+        }
+
+        window.onload = function() {
+            changeTop(0); // Initialize top clothing image
+            changeBottom(0); // Initialize bottom clothing image
+        };
+    </script>
+</body>
+</html>
