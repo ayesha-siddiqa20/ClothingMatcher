@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Matcher</title>
     <style>
         body {
@@ -27,37 +29,95 @@
             font-size: 16px;
             margin-top: 20px;
         }
+
+        .container {
+            display: flex;
+            justify-content: center; /* Center container in the middle of the page */
+        }
+
+        .wrapper {
+            display: flex; /* Use flexbox to layout children side by side */
+            gap: 20px; /* Add some space between the select elements */
+            padding: 20px;
+            width: 500px;
+            align-items: center; /* Align items vertically in the center */
+        }
+
+        .form-control {
+            flex: 1; /* Make select elements grow to use available space */
+        }
+
+        .camera {
+            margin-left: 20px; /* Add some space before the button */
+        }
+
+        .clothing-item img {
+            min-width: 330px; /* Set to desired width */
+            min-height: 300px; /* Set to desired height */
+            object-fit: cover; /* This ensures the image covers the area, may crop */
+            display: block; /* Ensures images are block-level elements */
+            margin: 0 auto; /* Centers the images horizontally */
+            border-radius: 10px; /* Optional: adds rounded corners to your images */
+        }
+
+
     </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body>
+<body> 
+    <div>
+        <button id="start-camera" class="btn btn-dark" style="display: flex; justify-content: center; font-size: large;">Start Camera</button>
+    </div>
+    <div class="container" style="display: none;">
+        <video class="video row" autoplay style="display: none; height: 400px; padding-left: 300px;"></video>
+        <canvas class="canvas" style="display: none;"></canvas>
+        <div class="wrapper row" style="margin-left: 300px;">
+                <select id="color-type" class="col-sm form-control" required>
+                    <option value="pink">Pink</option>
+                    <option value="green">Green</option>
+                    <option value="white">White</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="blue">Blue</option>
+                    <option value="orange">Orange</option>
+                </select>
+                <select id="clothing-type" class="col-sm form-control" required>
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                </select>
+                <button type="button" class="camera btn btn-dark" style="font-weight: 550;">Capture Image</button> <!-- Assuming you have a button for capturing -->
+
+        </div>
+    </div>
+    
+    
     <div id="clothing-matcher">
         <div id="top-clothing" class="clothing-item">
             <img id="top-image" src="top1.png" alt="Top Clothing">
             <br>
-            <button class="navigation-button" onclick="changeTop(-1)">Previous</button>
-            <button class="navigation-button" onclick="changeTop(1)">Next</button>
+            <button type="button" class="navigation-button btn btn-dark" style="font-size: large;" onclick="changeTop(-1)">Previous</button>
+            <button type="button" class="navigation-button btn btn-dark" style="font-size: large;" onclick="changeTop(1)">Next</button>
         </div>
         <div id="bottom-clothing" class="clothing-item">
             <img id="bottom-image" src="bottom1.png" alt="Bottom Clothing">
             <br>
-            <button class="navigation-button" onclick="changeBottom(-1)">Previous</button>
-            <button class="navigation-button" onclick="changeBottom(1)">Next</button>
+            <button type="button" class="navigation-button btn btn-dark" style="font-size: large;" onclick="changeBottom(-1)">Previous</button>
+            <button type="button" class="navigation-button btn btn-dark" style="font-size: large;" onclick="changeBottom(1)">Next</button>
         </div>
-        <button id="match-check-button" onclick="checkForMatch()">Check for Match</button>
+        <button id="match-check-button" type="button" class="btn btn-dark" style="font-size: large;" onclick="checkForMatch()">Check for Match</button>
     </div>
 
     <script>
-        let tops = [
-            { image: "top1.png", color: "white" },
-            { image: "top2.png", color: "black" },
-            { image: "top3.png", color: "brown" }
-        ];
+        // let tops = [
+        //     { image: "top1.png", color: "white" },
+        //     { image: "top2.png", color: "black" },
+        //     { image: "top3.png", color: "brown" }
+        // ];
 
-        let bottoms = [
-            { image: "bottom1.png", color: "white" },
-            { image: "bottom2.png", color: "green" },
-            { image: "bottom3.png", color: "white" }
-        ];
+        // let bottoms = [
+        //     { image: "bottom1.png", color: "white" },
+        //     { image: "bottom2.png", color: "green" },
+        //     { image: "bottom3.png", color: "white" }
+        // ];
 
         let currentTopIndex = 0;
         let currentBottomIndex = 0;
@@ -96,10 +156,8 @@
             }
         }
 
-        window.onload = function() {
-            changeTop(0); // Initialize top clothing image
-            changeBottom(0); // Initialize bottom clothing image
-        };
     </script>
+    <script src="app.js"></script>
+
 </body>
 </html>
